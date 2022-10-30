@@ -330,7 +330,7 @@ pub unsafe extern "C" fn jitsi_conference_participant(
     .runtime
     .block_on((*conference).participant(endpoint_id))
     .map(|participant| Box::into_raw(Box::new(participant)))
-    .unwrap_or_else(ptr::null_mut)
+    .unwrap_or_else(|_| ptr::null_mut())
 }
 
 #[no_mangle]
